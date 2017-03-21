@@ -4,15 +4,20 @@ import { Injectable } from '@angular/core';
 export class RandomStringService {
   private charSet: string = 
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  private length: number = 10;
 
-  constructor() { }
+  constructor( ) { 
 
-  getRandomString() {    
-    let result = "";
-    for (let i=0; i < 5; i++ )
+  }
+
+  getRandomString(limit: number): string { 
+    if ((!limit) || (limit < 1)) {
+      return ""
+    }   
+    let result: string = "";
+    for (let i=0; i < limit; i++ )
         result += this.charSet.charAt(
-            Math.floor(Math.random() * result.length));
+            Math.floor(Math.random() * this.charSet.length));
+
     return result;
   }
 }
