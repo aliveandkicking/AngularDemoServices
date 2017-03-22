@@ -21,7 +21,7 @@ import { ClickEventDirective } from './click-event.directive';
     HttpModule
   ],
   providers: [
-    LocalStorageService,
+    //LocalStorageService,
     RandomStringService,  
     { 
       provide: HumanDataToken,
