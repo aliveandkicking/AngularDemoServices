@@ -8,4 +8,4 @@ export const humanData = {
   bodyFat: 32
 }
 
-export const HUMAN_DATA = new OpaqueToken('HumanData')
+export const HumanDataToken = new OpaqueToken('HumanData')

@@ -1,23 +1,36 @@
-<h1>
-  {{title}}
-</h1>
+<div appClickEvent main-color-channel="green" (click)="logClick()">
+  <table> 
+    
+    <tr>  
+      <th>
+        Random string:      
+      </th>    
+      <th>
+        {{randomString}}
+      </th>
+    </tr>
 
-<table> 
-  <tr>  
-    <th>
-      Random string:      
-    </th>    
-    <th>
-      {{randomString}}
-    </th>
-  </tr>
+    <tr>  
+      <th>
+        Static data:      
+      </th>    
+      <th>
+        <ul>  
+          <li *ngFor="let prop of getHumanDataFields()">
+            {{prop + ':  ' + humanData[prop]}}
+          </li>
+        </ul>      
+      </th>
+    </tr>
 
-  <tr>  
-    <th>
-      Static data:      
-    </th>    
-    <th>
-      {{randomString}}
-    </th>
-  </tr>
-</table>
+    <tr>  
+      <th>
+        Value from local storage:      
+      </th>    
+      <th>
+        {{getLocalStorageValue()}}
+      </th>
+    </tr>
+    
+  </table>
+</div>

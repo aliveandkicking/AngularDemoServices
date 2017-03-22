@@ -6,11 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { RandomStringFactory, RandomStringToken } from './services/random-string-factory.service';
 import { RandomStringService } from './services/random-string.service';
-import { HUMAN_DATA, humanData } from './services/human-data.service';
+import { HumanDataToken, humanData } from './services/human-data.service';
+import { LocalStorageService } from './services/local-storage.service';
+import { ClickEventDirective } from './click-event.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ClickEventDirective
   ],
   imports: [
     BrowserModule,
@@ -18,14 +21,15 @@ import { HUMAN_DATA, humanData } from './services/human-data.service';
     HttpModule
   ],
   providers: [
+    LocalStorageService,
     RandomStringService,  
     { 
-      provide: HUMAN_DATA,
+      provide: HumanDataToken,
       useValue: humanData
     },  
     { 
       provide: RandomStringToken,
-      useFactory: RandomStringFactory(10),
+      useFactory: RandomStringFactory(25),
       deps: [RandomStringService]
     },  
   ],
