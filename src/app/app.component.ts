@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { RandomStringToken } from './services/random-string-factory.service';
 import { HumanDataToken } from './services/human-data.service';
 import { LocalStorageService } from './services/local-storage.service';
@@ -12,14 +12,16 @@ export class AppComponent {
   storageKey = 'storageKey'
 
   constructor ( 
-    private localStorageService: LocalStorageService,
+    @Optional() private localStorageService: LocalStorageService,
     @Inject(RandomStringToken) private randomString: string,
     @Inject(HumanDataToken) private humanData: Object
   ) {
   }
 
   ngOnInit(){
-    this.localStorageService.set(this.storageKey, 'Seems like it is ok')
+    if (this.localStorageService) {
+      this.localStorageService.set(this.storageKey, 'Seems like it is ok')      
+    }
   }
 
   getHumanDataFields() {
@@ -35,8 +37,9 @@ export class AppComponent {
   }
 
   getLocalStorageValue() {
-    let value = this.localStorageService.get(this.storageKey);
-    return value;
+    return this.localStorageService ? 
+      this.localStorageService.get(this.storageKey): 
+      'Service is unavailable'
   }
 
   logClick() {
